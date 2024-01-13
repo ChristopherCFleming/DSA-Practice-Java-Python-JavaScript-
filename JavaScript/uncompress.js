@@ -20,31 +20,22 @@
 // compress('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy'); 
 // // -> '127y'
 
-const compress = (s) => {
-  let answer = [];
-  let count = 0;
-  let currentChar = s[1];
-  
-  for (let i = 0; i <= s.length; i++) {
-    if (currentChar == s[i]) {
-      count += 1;
-    } else if (i == s.length) {
-      if (count == 1) {
-        answer.push(s[i - 1]);
-      } else {
-        answer.push(count.toString());
-        answer.push(s[i - 1]);
-      }
+const uncompress = (s) => {
+  let result = [];
+  const numbers = '0123456789';
+  let i = 0;
+  let j = 0;
+  while (j < s.length) {
+    if (numbers.includes(s[j])) {
+      j += 1;
     } else {
-      if (count == 1) {
-        answer.push(s[i -1]);
-      } else{
-        answer.push(count.toString());
-        answer.push(s[i - 1]);
+      const num = Number(s.slice(i, j));
+      for (let count = 0; count < num; count += 1) {
+        result.push(s[j]);
       }
-      currentChar = s[i];
-      count = 1;
-      }
+      j += 1;
+      i = j;
+    }
   }
-    return answer.join("");
+  return result.join('');
 };
