@@ -23,3 +23,25 @@
 # test_04:
 # compress('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
 # // -> '127y'
+
+
+def uncompress(s):
+    answer = ""
+    nums = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+    start_of_num = 0
+    end_of_num = 0
+    num_to_iterate = 0
+
+    for idx, char in enumerate(s):
+
+        if char not in nums:
+            end_of_num = idx
+            num_as_string = s[start_of_num: end_of_num]
+            num_to_iterate = int(num_as_string)
+
+            for _ in range(num_to_iterate):
+                answer += s[idx]
+
+            start_of_num = end_of_num + 1
+
+    return answer
