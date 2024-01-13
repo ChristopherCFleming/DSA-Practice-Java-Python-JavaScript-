@@ -24,28 +24,62 @@
 // test_10:
 // anagrams('pp', 'oo') // -> false
 
-const anagrams = (s1, s2) => {
-  const count = {};
+// const anagrams = (s1, s2) => {
+//   const count = {};
   
-  for (let char of s1) {
-    if (!(count[char])) {
-      count[char] = 0;
-    }
+//   for (let char of s1) {
+//     if (!(count[char])) {
+//       count[char] = 0;
+//     }
     
-    count[char] += 1
-  }
+//     count[char] += 1
+//   }
   
-  for (let char of s2) {
-    if (!(count[char])) {
+//   for (let char of s2) {
+//     if (!(count[char])) {
+//       return false;
+//     }
+//     count[char] -= 1;
+//   }
+  
+//   for (let key in count) {
+//     if (count[key] !== 0) {
+//       return false
+//     }
+//   }
+//   return true
+// };
+
+// Another solution using helper function:
+
+const objectMaker = (s) => {
+  let obj = {}
+  for (char of s) {
+    if (obj[char]) {
+      obj[char] += 1;
+    } else {
+      obj[char] = 1;
+    }
+  }
+  return obj;
+}
+
+const anagrams = (s1, s2) => {
+  let firstOne = objectMaker(s1);
+  
+  for (char of s2) {
+    if (!firstOne[char]) {
+      return false
+    } else {
+      firstOne[char] -= 1;
+    }
+  }
+  const counts = Object.values(firstOne);
+  console.log(counts);
+  for (num of counts) {
+    if (num !== 0) {
       return false;
     }
-    count[char] -= 1;
   }
-  
-  for (let key in count) {
-    if (count[key] !== 0) {
-      return false
-    }
-  }
-  return true
+  return true;
 };
