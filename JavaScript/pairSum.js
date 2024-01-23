@@ -11,3 +11,17 @@
 // pair_sum([1, 6, 7, 2], 13) # -> (1, 2)
 // pair_sum([9, 9], 18) # -> (0, 1)
 // pair_sum([6, 4, 2, 8 ], 12) # -> (1, 3)
+
+const pairSum = (numbers, targetSum) => {
+  previousNumbers = {};
+  
+  for (i in numbers) {
+    const currentNum = numbers[i];
+    const compliment = targetSum - currentNum;
+    
+    if (compliment in previousNumbers) {
+      return [parseInt(i), parseInt(previousNumbers[compliment])]
+    }
+    previousNumbers[currentNum] = i;
+  };
+};
