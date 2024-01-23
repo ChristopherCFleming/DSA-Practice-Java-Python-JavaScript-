@@ -11,3 +11,13 @@
 # pairProduct([4, 7, 9, 2, 5, 1], 35); // -> [1, 4]
 # pairProduct([3, 2, 5, 4, 1], 10); // -> [1, 2]
 # pairProduct([4, 6, 8, 2], 16); // -> [2, 3]
+
+def pair_product(numbers, target_product):
+    prev_numbers = {}
+
+    for i, num in enumerate(numbers):
+        target_number = target_product / num
+
+        if target_number in prev_numbers:
+            return (i, prev_numbers[target_number])
+        prev_numbers[num] = i
