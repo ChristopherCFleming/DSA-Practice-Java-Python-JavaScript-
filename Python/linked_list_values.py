@@ -29,3 +29,13 @@
 
 # linked_list_values(q) # -> [ 'q' ]
 # # linked_list_values(None) # -> [ ]
+
+def linked_list_values(head):
+    current = head
+    answer_list = []
+
+    while current is not None:
+        answer_list.append(current.val)
+        current = current.next
+
+    return answer_list
