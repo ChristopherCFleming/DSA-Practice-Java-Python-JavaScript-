@@ -19,3 +19,22 @@
 // five_sort(nums)
 // # twenty-thousand 4s followed by twenty-thousand 5s
 // # -> [4, 4, 4, 4, ..., 5, 5, 5, 5]
+
+
+const fiveSort = (nums) => {
+  let count = nums.length;
+  let i = 0;
+  
+  while (count > 0) {
+    const num = nums[i];
+    
+    if (num == 5) {
+      let toRemove = nums.splice(i, 1);
+      nums.push(toRemove[0]);
+    } else {
+      i += 1;
+    }
+    count -= 1;
+  }
+  return nums;
+};
